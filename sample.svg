@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     xmlns:xlink="http://www.w3.org/1999/xlink"
+     width="804" height="504" viewBox="0 0 804 504" version="1.1">
+
+<rect x="0" y="0" height="504" width="804" fill="lightgrey"/>
+
+<line x1="300" y1="20" x2="450" y2="200" stroke="#FF0000" stroke-width="3"/>
+<circle cx="60" cy="350" r="10"
+   onclick="alert('the circle')"/>
+
+<text x="60" y="375" text-anchor="middle">Click the circle</text>
+
+<rect  x="10" cy="20" width="100" height="45" fill="blue" rx="10" stroke="red"/>
+
+<ellipse cx="500" cy="350" rx="30" ry="50"/>
+
+<polygon points="100,100 200,200  300,200 200,100 300,50"/>
+
+<!-- polylines -->
+
+<path d="M 20,120 q 80,30 40,40" style="fill: none; stroke: orange"/>  
+
+<g id="pair" transform="translate(100, 0)">
+ <text id="string" x="40" y="475">Hi there</text>
+ <image id="img" xlink:href="acrobat_white.png" x="100" y="440" width="60" height="60" >
+   <animate attributeName="width"
+       begin="0s" dur="5s" from="60" to="100" fill="freeze"/>
+   <animateTransform attributeName="transform" type="rotate"
+       begin="5s" dur="15s" from="0" to="120" fill="freeze"/>
+ </image>
+<!-- <use xlink:href="#string" transform="rotate(45)"/> -->
+
+  <animate attributeName="x" attributeType="XML" from="100" to="800" begin="0s" dur="15s"  fill="freeze"/>
+
+  <animateMotion from="100,0" to="500,0" start="0s" dur="15s" fill="freeze"/>
+
+</g>
+
+<text x="100" y="250" fill="red" >Text
+ <animate attributeName="x" attributeType="XML" from="100" to="800" begin="0s" dur="15s"  fill="freeze"/>
+</text>
+
+
+<defs>
+<path id="curvepath" 
+   d ="M500 200 c  50 10, 70 10, 120 40 s 150 0, 200 40"
+   stroke="red" fill="none"/>
+</defs>
+
+<use xlink:href="#curvepath"/>
+<text style="font-size: 12">
+  <textPath xlink:href="#curvepath">Text following a Bezier curve</textPath>
+</text>
+
+</svg>

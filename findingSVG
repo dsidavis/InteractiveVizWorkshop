@@ -1,0 +1,60 @@
+
+ns = function(prefix) { 
+       if (prefix === 'svg') { 
+         return 'http://www.w3.org/2000/svg';
+       } else {
+         return null;
+       }
+      };
+
+o = document.evaluate('//svg:svg' , document, ns, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE)
+
+o.snapshotLength
+
+o.snapshotItem(0)
+
+
+var i;
+for(i = 0; i < o.snapshotLength; i++) { console.log( o.snapshotItem(i).getAttribute("class") ) }
+
+
+// scatterplot.html
+
+o = document.evaluate("//svg:g[@class = 'points']" , document, ns, XPathResult.ORDERED_NODE_SNAPSHOT_TYPE)
+
+o.snapshotLength
+
+g = o.snapshotItem(0)
+g.childElementCount
+k = g.children
+
+k[2].style.fill = "red"
+k[2].setAttribute("transform", z + " scale(3, 3)")
+
+k[2].
+
+
+
+while(p && p.tagName != "HTML") { console.log(p.tagName + " " + p.getAttribute("class")); p = p.parentNode}
+/*
+path point
+g points
+g trace scatter traceb39155
+g scatterlayer mlayer
+g plot
+g subplot xy
+g cartesianlayer
+svg main-svg
+DIV svg-container
+DIV plot-container plotly
+DIV plotly html-widget html-widget-static-bound js-plotly-plot
+DIV null
+BODY null
+HTML null
+*/
+
+
+p = k[0]
+a = []
+while(p && p.tagName != "HTML") { a.push(p.tagName + " " + p.getAttribute("class")); p = p.parentNode}
+a.forEach(function(x) {console.log(x);})
