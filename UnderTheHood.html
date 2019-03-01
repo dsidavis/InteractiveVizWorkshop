@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Interactive &amp; Dynamic Plots - Under the Hood</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+
+class: center, middle
+
+# Interactive &amp; Dynamic Plots - Under the Hood
+
+## [https://github.com/dsidavis/InteractiveVizeUnderTheHood](https://github.com/dsidavis/InteractiveVizeUnderTheHood)
+
+
+### Duncan Temple Lang
+### Jane Carlen
+
+<div style="clear: both"/>
+
+<!-- <hr width="50%"/> -->
+<img src="http://dsi.ucdavis.edu/images/dsi_banner.png" height="40%"></img>
+
+---
+layout: true
+<img style="float: right" src="http://dsi.ucdavis.edu/images/dsi_brand_logo.png"></img>
+
+---
+
+## Goals
+
++ Demystify generated plots
+  + Anatomy of interactive, dynamic plots.
+
++ Purpose:  To understand how to customize and extend these plots.
+
+
+---
+
+# From R
+
++ Combination of HTML &amp; JavaScript
+   + Can customize the HTML that is created.
+     + From R when creating it, or
+
++ data + plot functions in R
+
++ Generate the HTML file
+  + Contains the data
+  + information to create the plot,
+    + but not the rendered plot.
+
++ When the HTML file is loaded into to the browser/viewer,
+   + Plot and its elements are created then
+   + Plot is not created in R - just instructions/description of how JavaScript will create it.
+
++ Need to connect extra/meta information with future graphical objects.
+
+---
+
+# Plots in HTML
+
++ 2 rendering mechanisms
+  + SVG &amp; HTML Canvas
+  + These libraries use SVG.
+
++ All plot elements (points, lines, ...) are objects
+
++ Graphical objects in JS
+  + Have properties we can query and set
+     + dynamic changes for, e.g., color, text, tooltip, ...
+  + Events on each object
+     + e.g., hover, click, change/move, ...
+
++ All computations done *within* the browser with data *local* within the page
+   + No server
+     + providing the data
+     + doing computations in response to loading or user activity.
+  
+
+---
+
+# Generating the HTML
+
++ Can customize the HTML we generate for a plot.
+
++ `htmltools` to create HTML elements in the document.
+```
+ div(h1("My title"))
+ div(p(strong("A paragraph")))
+```
+
++ Or generate the default and post-process the HTML
+  + Programmatically using the xml2/XML packags
+
++ Try to avoid manual editing which is not reproducible.
+
+
+
+---
+
+# Entirely different approach ...
+
++ Generate an SVG plot in R
++ Add javascript instructions to plot elements
+
++ 2 approaches
+  + grid2SVG
+  + SVGAnnotation
+
+
+
+    </textarea>
+    <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
+</html>
