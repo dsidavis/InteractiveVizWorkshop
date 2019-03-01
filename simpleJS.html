@@ -1,0 +1,52 @@
+<html>
+    <head>
+<script>	
+function doit() {
+     var txt =  document.getElementById('myTextField');
+//     var opt = document.getElementByName('opt1').value;
+     var opt = document.querySelector('input[name="opt1"]:checked').value;
+
+     if(opt == "on") {
+	 txt.value = "Hi. opt is on";
+     } else
+	 txt.value = "Goodbye. opt is off";     
+ }
+
+function other() {
+     var txt =  document.getElementById('myTextField');
+     txt.value = "Some other text entirely";
+}
+ 
+function reset() {
+
+     document.getElementById('on').checked = true;
+     document.getElementById('myTextField').value = "";
+}
+</script>    
+</head>	
+
+
+<body onload="reset()">
+
+    <p>
+	<button type="button" onclick="reset()" name="reset">Reset</button>
+    </p>
+    
+<p>
+<button type="button" onclick="doit()" name="A">A</butto>
+<button type="button" onclick="other()" name="B">B</button>
+</p>
+
+<p>
+<input type="radio" name="opt1" id="on" value="on" checked="true" >On</input>
+<input type="radio" name="opt1" id="off" value="off">Off</input>
+</input>
+</p>
+
+<input type="text" id="myTextField" style="height: 100px">
+
+</input>
+
+   
+</body>	
+</html>

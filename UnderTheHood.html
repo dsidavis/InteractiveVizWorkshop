@@ -45,16 +45,17 @@ layout: true
 + Demystify generated plots
   + Anatomy of interactive, dynamic plots.
 
-+ Purpose:  To understand how to customize and extend these plots.
++ Purpose:  To understand how one might customize and extend these plots.
 
 
 ---
 
 # From R
 
-+ Combination of HTML &amp; JavaScript
++ Combination of HTML &amp; JavaScript &amp; SVG
    + Can customize the HTML that is created.
      + From R when creating it, or
+     + post-process the generated
 
 + data + plot functions in R
 
@@ -92,6 +93,74 @@ layout: true
   
 
 ---
+# Explore the HTML &amp; JavaScript
+
++ Explore visually in the browser developer tools'  Elements tab
++ Or programmatically
+  + in R or
+  + JavaScript (in the developer tools' Console)
+
+```
+library(XML)
+doc = htmlParse("scatterplot.html")
+xpathSApply(doc, "//body//*", xmlName)
+```
+```
+[1] "div"    "div"    "script" "script"
+```
+
++ Size of the text nodes within &lt;script&gt;
+```
+xpathSApply(doc, "//body//script/text()", function(x) nchar(xmlValue(x)))
+```
+```
+[1] 2798  130
+```
+These text nodes are the JSON dump of the data.
+
+---
+
+# Attributes
+
+```
+xpathApply(doc, "//body//*", xmlAttrs)
+```
+```
+[[1]]
+                    id 
+"htmlwidget_container" 
+
+[[2]]
+                               id                             class 
+"htmlwidget-88e2149009ee20887e6f"              "plotly html-widget" 
+                            style 
+       "width:100%;height:400px;" 
+
+[[3]]
+                             type                          data-for 
+               "application/json" "htmlwidget-88e2149009ee20887e6f" 
+
+[[4]]
+                             type                          data-for 
+  "application/htmlwidget-sizing" "htmlwidget-88e2149009ee20887e6f" 
+```
+
+---
+
+# JSON
+
+```
+library(RJSONIO)
+jj = xpathSApply(doc, "//body//script/text()", function(x) fromJSON(xmlValue(x)))
+sapply(jj, names)
+[[1]]
+[1] "x"       "evals"   "jsHooks"
+
+[[2]]
+[1] "viewer"  "browser"
+```
+
+---
 
 # Generating the HTML
 
@@ -104,11 +173,42 @@ layout: true
 ```
 
 + Or generate the default and post-process the HTML
-  + Programmatically using the xml2/XML packags
+  + Programmatically using the xml2/XML packages
 
 + Try to avoid manual editing which is not reproducible.
+  + Tedious, error-prone and typically has to be done multiple times
+    as you tweak the original computations and generate new versions
+
+---
+# Basic  JavaScript & HTML.
+
++ [simpleJS.html](simpleJS.html)
 
 
+--- 
+# SVG Example
+
++ [sample.svg](sample.svg)
+
+---
+
+# Adding Event
+
++ Click on the blue rectangle
+  + Change the color of the line to the right to blue.
+
++ Add an id attribute to the line so we can get it (via getElementById)
+
+```
+   <rect x="0" y="0" height="504" width="804" fill="lightgrey"
+ 	onclick="document.getElementById('myLine').stroke='#00FF00'"/>
+```
+
++ Add an onclick event handler on the rectangle
+```
+<rect x="0" y="0" height="504" width="804" fill="lightgrey"
+ 	onclick="document.getElementById('myLine').stroke='#00FF00'"/>
+```
 
 ---
 
