@@ -28,12 +28,16 @@ g = o.snapshotItem(0)
 g.childElementCount
 k = g.children
 
+// Change the color
 k[2].style.fill = "red"
+
+// Change the size, but keep the existing translation
+z = k[2].getAttribute("transform");
 k[2].setAttribute("transform", z + " scale(3, 3)")
 
-k[2].
 
 
+// Print the node hierarchy
 
 while(p && p.tagName != "HTML") { console.log(p.tagName + " " + p.getAttribute("class")); p = p.parentNode}
 /*
@@ -54,6 +58,8 @@ HTML null
 */
 
 
+
+// Another way to print the node hierarchy.
 p = k[0]
 a = []
 while(p && p.tagName != "HTML") { a.push(p.tagName + " " + p.getAttribute("class")); p = p.parentNode}
