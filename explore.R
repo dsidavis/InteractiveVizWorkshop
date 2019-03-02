@@ -1,6 +1,6 @@
 library(XML)
 
-doc2 = htmlParse("../DSI/intro_to_interactive/pizza_linked.html")
+doc2 = htmlParse("pizza_linked.html")
 getNodeSet(doc2, "//script[@data-for]/@data-for")
 
 
