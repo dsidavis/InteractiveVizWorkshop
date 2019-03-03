@@ -9,7 +9,7 @@ what is going in the interactive plots generated via, e.g., the plotly package.
 + [exploreScatter.R](exploreScatter.R) is R code to query the static HTML document created by plotly.
   When rendered, the HTML document is augmented with dynamically created HTML and plot-elements.
    + [scatterplot.html](scatterplot.html) is the ploty-generated HTML for a simple 32-point scatterplot.
-   + (explore.R)[explore.R] is for exploring Jane's pizza_linked.html plotly static HTML.
+   + [explore.R](explore.R) is for exploring Jane's [pizza_linked.html](pizza_linked.html) plotly static HTML.
   
 + [onClick.html](onClick.html) and [sompleJS.htlm](simpleJS.html) are examples of simple HTML with
   JavaScript event handler files.
